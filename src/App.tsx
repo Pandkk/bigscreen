@@ -13,6 +13,7 @@ import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import { Spin } from 'antd'
 // 私有路由
 import ComPrivateRoute from '@src/components/private-route'
+import session from '@src/utils/session-storage'
 
 interface IAppProps {}
 
@@ -21,6 +22,19 @@ const App: FC<IAppProps> = () => {
     <Suspense fallback={<Loading />}>
       <Router>
         <Switch>
+          {/*根目录 - 根据登录状态跳转*/}
+          <Route
+            path='/'
+            exact
+            render={() => {
+              // 检查是否已登录
+              if (session.getItem('token')) {
+                return <Redirect to='/frame/home' />
+              } else {
+                return <Redirect to='/login' />
+              }
+            }}
+          />
           {/*登录*/}
           <Route
             path='/login'

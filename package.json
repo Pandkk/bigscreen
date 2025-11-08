@@ -25,7 +25,7 @@
   "scripts": {
     "start": "set PORT=6001 && cross-env REACT_APP_ENV=development react-app-rewired start",
     "build:test": "cross-env REACT_APP_ENV=test react-app-rewired build",
-    "build:production": "cross-env REACT_APP_ENV=production react-app-rewired build",
+    "build:pro": "cross-env REACT_APP_ENV=production react-app-rewired build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -67,6 +67,7 @@
     "default-passive-events": "^2.0.0",
     "echarts": "^5.3.2",
     "echarts-wordcloud": "^2.0.0",
+    "hard-source-webpack-plugin": "^0.13.1",
     "http-proxy-middleware": "^2.0.6",
     "ice": "^3.7.71",
     "jsoneditor": "^9.9.0",
@@ -77,7 +78,7 @@
     "react-json-view": "^1.21.3",
     "react-redux": "^7.2.8",
     "react-rnd": "^10.3.7",
-    "react-router-dom": "^5.3.0",
+    "react-router-dom": "^5.3.4",
     "redux": "^4.1.2",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
@@ -85,6 +86,7 @@
     "sass-loader": "^12.6.0",
     "sass-resources-loader": "^2.2.4",
     "speed-measure-webpack-plugin": "^1.5.0",
+    "thread-loader": "^3.0.4",
     "webpack-bundle-analyzer": "^4.5.0"
   },
   "homepage": "."
