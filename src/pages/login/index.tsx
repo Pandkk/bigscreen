@@ -7,7 +7,7 @@
  * @FilePath: \bigscreen\src\pages\login\index.tsx
  * Copyright (c) 2022 by hejp 378540660@qq.com, All Rights Reserved.
  */
-import { FC, useCallback, useEffect } from 'react'
+import { FC, useCallback, useEffect, useState } from 'react'
 import { Form, Input, Checkbox, Button } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import { connect } from 'react-redux'
@@ -29,6 +29,20 @@ const Login: FC<ILoginProps> = ({ saveUserInfo, userinfo }) => {
   let history = useHistory()
   // 获取form实例
   const [loginForm] = Form.useForm()
+  // 鼠标位置状态
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  
+  // 监听鼠标移动
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY })
+    }
+    
+    document.addEventListener('mousemove', handleMouseMove)
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove)
+    }
+  }, [])
 
   const jumpHome = useCallback(() => {
     history.replace('/frame/home')
@@ -50,7 +64,28 @@ const Login: FC<ILoginProps> = ({ saveUserInfo, userinfo }) => {
   }, [jumpHome])
   return (
     <div className='app-login'>
-      <div className='app-login__form'>
+      {/* 粒子背景 */}
+      <div className="particles">
+        {Array.from({ length: 50 }).map((_, i) => (
+          <div
+            key={i}
+            className="particle"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              width: `${Math.random() * 4 + 1}px`,
+              height: `${Math.random() * 4 + 1}px`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${Math.random() * 3 + 2}s`
+            }}
+          />
+        ))}
+      </div>
+      <div 
+        className='app-login__form'
+        style={{
+          transform: `perspective(1000px) rotateY(${(mousePosition.x - window.innerWidth / 2) * 0.01}deg) rotateX(${(window.innerHeight / 2 - mousePosition.y) * 0.01}deg)`
+        }}>
         <div className='header'>
           <div className='logo'></div>
           <h2 className='title'>大屏管理系统</h2>
@@ -91,6 +126,16 @@ const Login: FC<ILoginProps> = ({ saveUserInfo, userinfo }) => {
                 <span>《用户隐私协议》</span>
               </Checkbox>
             </Form.Item>
+            
+            {/* 科技装饰元素 */}
+            <div className="tech-decoration">
+              <div className="tech-line tech-line-1"></div>
+              <div className="tech-line tech-line-2"></div>
+              <div className="tech-line tech-line-3"></div>
+              <div className="tech-dot tech-dot-1"></div>
+              <div className="tech-dot tech-dot-2"></div>
+              <div className="tech-dot tech-dot-3"></div>
+            </div>
           </Form>
         </div>
       </div>

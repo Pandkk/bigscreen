@@ -28,7 +28,27 @@ const Home: FC<IHomeProps> = ({ strategy, getStrategy, path }) => {
 
   return (
     <div className='app-screen-home'>
-      <span>欢迎来到大屏后台管理系统</span>
+      {/* 粒子背景 */}
+      <div className="particles">
+        {Array.from({ length: 150 }).map((_, i) => (
+          <div
+            key={i}
+            className="particle"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              width: `${Math.random() * 3 + 1}px`,
+              height: `${Math.random() * 3 + 1}px`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${Math.random() * 5 + 5}s`
+            }}
+          />
+        ))}
+      </div>
+      <div className='app-screen-home__content'>
+        <div className='main-title'>欢迎来到大屏后台管理系统</div>
+        <div className='sub-title'>- Welcome to the large screen background management system -</div>
+      </div>
     </div>
   )
 }
